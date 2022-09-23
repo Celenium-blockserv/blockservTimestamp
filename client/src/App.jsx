@@ -1,20 +1,19 @@
 import { EthProvider } from "./contexts/EthContext";
-import Intro from "./components/Intro/";
-import Setup from "./components/Setup";
-import Demo from "./components/Demo";
 import Footer from "./components/Footer";
 import "./App.css";
+import TransactionRecorder from "./components/TransactionRecorder";
+import TransactionReader from "./components/TransactionReader";
 
 function App() {
   return (
     <EthProvider>
       <div id="App" >
         <div className="container">
-          <Intro />
+          <h2>Timestamper</h2>
           <hr />
-          <Setup />
+          <TransactionRecorder />
           <hr />
-          <Demo />
+          <TransactionReader />
           <hr />
           <Footer />
         </div>
