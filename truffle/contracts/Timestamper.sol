@@ -6,23 +6,22 @@ pragma solidity >=0.4.22 <0.9.0;
 import "../node_modules/@openzeppelin/contracts/access/Ownable.sol";
 
 contract Timestamper is Ownable {
-  event Timestamp(uint256 indexed hash);
-
   struct ProofOfOwnership {
     uint timestamp;
-    uint256 hash;
+    uint blockNumber;
+    string hash;
   }
 
   mapping ( address => ProofOfOwnership[]) proofs;
 
-  function timestamp(address _ownerAddress, uint256 hash) public onlyOwner {
+  function timestamp(address _ownerAddress, string memory hash) public onlyOwner {
 
     ProofOfOwnership memory currentProofOfOwnership;
     currentProofOfOwnership.timestamp = block.timestamp;
     currentProofOfOwnership.hash = hash;
+    currentProofOfOwnership.blockNumber = block.number;
 
     proofs[_ownerAddress].push(currentProofOfOwnership);
-    emit Timestamp(hash);
   }
 
   function getProofOfOwnership(address _ownerAddress) public view returns (ProofOfOwnership[] memory) {

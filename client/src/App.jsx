@@ -9,7 +9,7 @@ function App() {
     <EthProvider>
       <div id="App" >
         <div className="container">
-          <h2>Timestamper</h2>
+          <h1>Timestamper</h1>
           <hr />
           <TransactionRecorder />
           <hr />

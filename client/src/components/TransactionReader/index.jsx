@@ -62,7 +62,7 @@ function TransactionReader() {
         {
             proofs.map((proof) => (
                 <li key={proof.hash}>
-                    {new Date(proof.timestamp * 1000).toLocaleString()} - {proof.hash}
+                    {new Date(proof.timestamp * 1000).toLocaleString()} - {proof.hash} - {proof.blockNumber}
                 </li>
             ))
         }
