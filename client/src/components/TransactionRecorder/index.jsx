@@ -10,17 +10,27 @@ import NoticeWrongNetwork from "./NoticeWrongNetwork";
 
 
 const styles = StyleSheet.create({
+    text: {
+        height: 40,
+        color: 'white',
+        fontFamily: "'Inknut Antiqua', sans-serif"
+},
     input: {
         height: 40,
         margin: 12,
         borderWidth: 1,
         padding: 10,
+        color: 'var(--celenium-yellow)',
+        fontFamily: "'Inknut Antiqua', sans-serif"
+
     },
-    dropzone: {
-        padding: 20,
-        border: "3px blue dashed",
-        width: '60%',
-        margin: 'auto'
+    button: {
+        height: 40,
+        margin: 12,
+        borderWidth: 1,
+        padding: 10,
+        color: 'var(--celenium-grey)',
+
     }
 });
 
@@ -48,19 +58,19 @@ function TransactionRecorder() {
     <>
         <Title></Title>
 
-        <Text>Hash  = </Text>
+        <Text style={styles.text}>Hash  = </Text>
         <TextInput
             style={styles.input}
             onChangeText={setHash}
             value={hash}
         />
-        <Text>Ownership address  = </Text>
+        <Text style={styles.text}>Ownership address  = </Text>
         <TextInput
             style={styles.input}
             onChangeText={setRecipient}
             value={recipient}
         />
-        <button onClick={setTimestamp}>
+        <button style={styles.button} onClick={setTimestamp}>
             Record transaction
         </button>
 
