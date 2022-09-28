@@ -30,6 +30,10 @@ module.exports = {
       rinkeby: {
           provider : function() {return new HDWalletProvider({mnemonic:{phrase:`${process.env.MNEMONIC}`},providerOrUrl:`https://rinkeby.infura.io/v3/${process.env.INFURA_ID}`})},
           network_id:4,
+      },
+      polygonmainnet:{
+          provider : function() {return new HDWalletProvider({mnemonic:{phrase:`${process.env.MNEMONIC}`},providerOrUrl:`https://polygon-mainnet.infura.io/v3/${process.env.INFURA_ID}`})},
+          network_id:137,
       }
     //
     // An additional network, but with some advanced options…
