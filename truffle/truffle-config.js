@@ -24,7 +24,7 @@ module.exports = {
     //
      development: {
       host: "127.0.0.1",     // Localhost (default: none)
-      port: 7545,            // Standard Ethereum port (default: none)
+      port: 8545,            // Standard Ethereum port (default: none)
       network_id: "*",       // Any network (default: none)
      },
       rinkeby: {
@@ -35,7 +35,9 @@ module.exports = {
           provider : function() {return new HDWalletProvider({mnemonic:{phrase:`${process.env.MNEMONIC}`},providerOrUrl:`https://polygon-mainnet.infura.io/v3/${process.env.INFURA_ID}`})},
           network_id:137,
           networkCheckTimeout: 10000,
-          timeoutBlocks: 200
+          timeoutBlocks: 200,
+          gas: 8500000,           // Gas sent with each transaction (default: ~6700000)
+          gasPrice: 31000000000,  // 20 gwei (in wei) (default: 100 gwei)
 
       },
       mumbai:{
