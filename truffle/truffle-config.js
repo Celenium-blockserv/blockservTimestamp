@@ -34,6 +34,16 @@ module.exports = {
       polygonmainnet:{
           provider : function() {return new HDWalletProvider({mnemonic:{phrase:`${process.env.MNEMONIC}`},providerOrUrl:`https://polygon-mainnet.infura.io/v3/${process.env.INFURA_ID}`})},
           network_id:137,
+          networkCheckTimeout: 10000,
+          timeoutBlocks: 200
+
+      },
+      mumbai:{
+          provider : function() {return new HDWalletProvider({mnemonic:{phrase:`${process.env.MNEMONIC}`},providerOrUrl:`https://polygon-mumbai.infura.io/v3/${process.env.INFURA_ID}`})},
+          network_id:80001,
+          networkCheckTimeout: 10000,
+          timeoutBlocks: 200
+
       }
     //
     // An additional network, but with some advanced options…
