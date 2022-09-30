@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     }
 });
 
-function TransactionRecorder() {
+function TransactionRecorder({fileHash}) {
     const { state: { artifact,   accounts, contract } } = useEth();
 
     const [hash, setHash] = useState(0);
@@ -47,6 +47,9 @@ function TransactionRecorder() {
         }
     }, [accounts]);
 
+    useEffect(() => {
+        setHash(fileHash);
+    }, [fileHash]);
 
     const setTimestamp = async () => {
 
