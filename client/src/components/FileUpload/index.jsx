@@ -1,23 +1,25 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
 import {useState} from "react";
 import Title from "./Title";
 import Dropzone from "react-dropzone";
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
-const styles = StyleSheet.create({
-    input: {
-        height: 40,
-        margin: 12,
-        borderWidth: 1,
-        padding: 10,
-    },
-    dropzone: {
-        padding: 20,
-        border: "3px blue dashed",
-        width: '60%',
-        margin: 'auto'
-    }
-});
+// const styles = StyleSheet.create({
+//     input: {
+//         height: 40,
+//         margin: 12,
+//         borderWidth: 1,
+//         padding: 10,
+//     },
+//     dropzone: {
+//         padding: 20,
+//         border: "3px blue dashed",
+//         width: '60%',
+//         margin: 'auto'
+//     }
+// });
 
 function FileUpload({setUploadedFileHash}) {
 
@@ -48,11 +50,12 @@ function FileUpload({setUploadedFileHash}) {
     }
 
     return (
-        <div className="demo">
+        <Container>
             <Title/>
+            <Row>
+                <Col className='dropzone'>
 
-            <div style={styles.dropzone}>
-                <Dropzone onDrop={async (selectedFile) => {
+                    <Dropzone  onDrop={async (selectedFile) => {
                     await loadFile(selectedFile[0])
                     setSelectedFile(selectedFile[0]);
                 }}>
@@ -60,19 +63,26 @@ function FileUpload({setUploadedFileHash}) {
                         <section>
                             <div {...getRootProps()}>
                                 <input {...getInputProps()} />
-                                <p>Drag 'n' drop the file to upload</p>
+                                <p>Drag 'n' drop the file to compute its' SHA-256 hash value.</p>
                             </div>
                         </section>
                     )}
-                </Dropzone>
-                {selectedFile.path}
-            </div>
-            <div className="scroll">
-                <ul>
-                    {computedHash}
-                </ul>
-            </div>
-        </div>
+                </Dropzone></Col>
+                <Col>Selected file : {selectedFile.path}<br/>
+                     Computed hash:
+                            {computedHash}
+
+                    </Col>
+            </Row>
+
+
+
+
+
+
+
+        </Container>
+
     );
 }
 

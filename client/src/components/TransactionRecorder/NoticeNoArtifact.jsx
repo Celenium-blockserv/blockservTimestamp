@@ -1,7 +1,7 @@
 function NoticeNoArtifact() {
   return (
     <p>
-      ⚠️ Cannot find <span className="code">Nfts</span> contract artifact.
+      ⚠️ Cannot find <span className="code">timestamper</span> contract artifact.
       Please complete the above preparation first, then restart the react dev server.
     </p>
   );

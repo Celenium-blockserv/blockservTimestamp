@@ -1,38 +1,36 @@
 import {useEffect, useState} from "react";
-import {StyleSheet} from 'react-native';
 
 import useEth from "../../contexts/EthContext/useEth";
-import {  Text, TextInput } from 'react-native';
 import Title from "./Title";
 
 import NoticeNoArtifact from "./NoticeNoArtifact";
 import NoticeWrongNetwork from "./NoticeWrongNetwork";
 
 
-const styles = StyleSheet.create({
-    text: {
-        height: 40,
-        color: 'white',
-        fontFamily: "'Inknut Antiqua', sans-serif"
-
-    },
-    input: {
-        height: 40,
-        margin: 12,
-        borderWidth: 1,
-        padding: 10,
-        color: 'var(--celenium-yellow)',
-        fontFamily: "'Inknut Antiqua', sans-serif"
-
-    },
-    button: {
-        height: 40,
-        margin: 12,
-        borderWidth: 1,
-        padding: 10,
-        color: 'var(--celenium-grey)'
-    }
-});
+// const styles = StyleSheet.create({
+//     text: {
+//         height: 40,
+//         color: 'white',
+//         fontFamily: "'Inknut Antiqua', sans-serif"
+//
+//     },
+//     input: {
+//         height: 40,
+//         margin: 12,
+//         borderWidth: 1,
+//         padding: 10,
+//         color: 'var(--celenium-yellow)',
+//         fontFamily: "'Inknut Antiqua', sans-serif"
+//
+//     },
+//     button: {
+//         height: 40,
+//         margin: 12,
+//         borderWidth: 1,
+//         padding: 10,
+//         color: 'var(--celenium-grey)'
+//     }
+// });
 
 
 function TransactionReader() {
@@ -60,13 +58,12 @@ function TransactionReader() {
     <>
         <Title></Title>
 
-        <Text  style={styles.text}>Ownership address  = </Text>
-        <TextInput
-            style={styles.input}
+        <p>Ownership address  = </p>
+        <input
             onChangeText={setRecipient}
             value={recipient}
         />
-        <button  style={styles.button} onClick={setTimestamp}>
+        <button   onClick={setTimestamp}>
             Get proof of owner ship
         </button>
 
