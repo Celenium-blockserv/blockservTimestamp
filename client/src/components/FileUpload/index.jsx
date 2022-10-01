@@ -5,21 +5,7 @@ import Dropzone from "react-dropzone";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-
-// const styles = StyleSheet.create({
-//     input: {
-//         height: 40,
-//         margin: 12,
-//         borderWidth: 1,
-//         padding: 10,
-//     },
-//     dropzone: {
-//         padding: 20,
-//         border: "3px blue dashed",
-//         width: '60%',
-//         margin: 'auto'
-//     }
-// });
+import Table from 'react-bootstrap/Table';
 
 function FileUpload({setUploadedFileHash}) {
 
@@ -53,7 +39,8 @@ function FileUpload({setUploadedFileHash}) {
         <Container>
             <Title/>
             <Row>
-                <Col className='dropzone'>
+                <Col  xs={2}>
+                    <Container  className='dropzone'>
 
                     <Dropzone  onDrop={async (selectedFile) => {
                     await loadFile(selectedFile[0])
@@ -63,14 +50,28 @@ function FileUpload({setUploadedFileHash}) {
                         <section>
                             <div {...getRootProps()}>
                                 <input {...getInputProps()} />
-                                <p>Drag 'n' drop the file to compute its' SHA-256 hash value.</p>
+                                <p>Drag 'n' drop the file here</p>
                             </div>
                         </section>
                     )}
-                </Dropzone></Col>
-                <Col>Selected file : {selectedFile.path}<br/>
-                     Computed hash:
-                            {computedHash}
+                </Dropzone>
+
+                    </Container></Col>
+                <Col xs={10}>
+                    <Table>
+                        <tbody>
+                        <tr>
+                            <td>Selected file:</td>
+                            <td>{selectedFile.path}</td>
+                        </tr>
+                        <tr>
+                            <td>Computed hash:</td>
+                            <td>{computedHash}</td>
+                        </tr>
+                        </tbody>
+                    </Table>
+
+
 
                     </Col>
             </Row>

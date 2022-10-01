@@ -6,7 +6,7 @@ function Header() {
     return (
         <>
             <Navbar bg="dark" variant="dark">
-                <Container>
+                <Container fluid>
                     <Navbar.Brand href="#home">
                         <img
                             alt=""

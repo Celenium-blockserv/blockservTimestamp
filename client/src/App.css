@@ -4,5 +4,6 @@
 }
 
 .dropzone {
-         border: 1px blue dashed;
+         border: 2px blue dashed;
+    border-radius:10px;
      }

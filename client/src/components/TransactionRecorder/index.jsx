@@ -1,11 +1,13 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import useEth from "../../contexts/EthContext/useEth";
 import Title from "./Title";
 
 import NoticeNoArtifact from "./NoticeNoArtifact";
 import NoticeWrongNetwork from "./NoticeWrongNetwork";
+import Container from 'react-bootstrap/Container';
 
+import Table from 'react-bootstrap/Table';
 
 // const styles = StyleSheet.create({
 //     text: {
@@ -55,36 +57,47 @@ function TransactionRecorder({fileHash}) {
 
     };
 
+    function handleChange(event)
+    {    setRecipient( event.target.value);
+    }
+
+
+
     const demo =
     <>
-        <Title></Title>
-
-        <p>Hash  = </p>
-        <input
-            onChangeText={setHash}
-            value={hash}
-        />
-        <p>Ownership address  = </p>
-        <input
-            onChangeText={setRecipient}
-            value={recipient}
-        />
-        <button  onClick={setTimestamp}>
-            Record transaction
-        </button>
-
-
-
+        <Title/>
+        <Table>
+            <thead>
+            <tr>
+                <th>Hash</th>
+                <th>Ownership address</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>{hash}</td>
+                <td><input
+                    onChange={handleChange}
+                    value={recipient}
+               />
+                </td>
+                <td>
+                    <button  onClick={setTimestamp}> Record transaction</button>
+                </td>
+            </tr>
+            </tbody>
+        </Table>
     </>;
 
   return (
-    <div className="demo">
-      {
+      <Container>
+          {
         !artifact ? <NoticeNoArtifact /> :
           !contract ? <NoticeWrongNetwork /> :
             demo
       }
-    </div>
+      </Container>
   );
 }
 

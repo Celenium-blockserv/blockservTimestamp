@@ -1,40 +1,17 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import useEth from "../../contexts/EthContext/useEth";
 import Title from "./Title";
 
 import NoticeNoArtifact from "./NoticeNoArtifact";
 import NoticeWrongNetwork from "./NoticeWrongNetwork";
+import Container from 'react-bootstrap/Container';
 
-
-// const styles = StyleSheet.create({
-//     text: {
-//         height: 40,
-//         color: 'white',
-//         fontFamily: "'Inknut Antiqua', sans-serif"
-//
-//     },
-//     input: {
-//         height: 40,
-//         margin: 12,
-//         borderWidth: 1,
-//         padding: 10,
-//         color: 'var(--celenium-yellow)',
-//         fontFamily: "'Inknut Antiqua', sans-serif"
-//
-//     },
-//     button: {
-//         height: 40,
-//         margin: 12,
-//         borderWidth: 1,
-//         padding: 10,
-//         color: 'var(--celenium-grey)'
-//     }
-// });
+import Table from 'react-bootstrap/Table';
 
 
 function TransactionReader() {
-    const { state: { artifact,   accounts, contract } } = useEth();
+    const {state: {artifact, accounts, contract}} = useEth();
 
     const [recipient, setRecipient] = useState("");
     const [proofs, setProofs] = useState([]);
@@ -54,39 +31,63 @@ function TransactionReader() {
         setProofs(result);
     };
 
+    function handleChange(event) {
+        setRecipient(event.target.value);
+    }
+
     const demo =
-    <>
-        <Title></Title>
+        <>
+            <Title/>
+            <Container fluid>
+                Ownership address =
+                <input
+                    onChange={handleChange}
+                    value={recipient}
+                />
+                <button onClick={setTimestamp}>
+                    Get proof of owner ship
+                </button>
+            </Container>
+            <Table>
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Hash</th>
+                    <th>Block Number</th>
+                </tr>
+                </thead>
+                <tbody>
 
-        <p>Ownership address  = </p>
-        <input
-            onChangeText={setRecipient}
-            value={recipient}
-        />
-        <button   onClick={setTimestamp}>
-            Get proof of owner ship
-        </button>
+                {
+                    proofs.map((proof) => (<tr key={proof.blockNumber}>
+                            <td>
+                                {new Date(proof.timestamp * 1000).toLocaleString()}
+                            </td>
+                            <td>
+                                {proof.hash}
+                            </td>
+                            <td>
+                                {proof.blockNumber}
+                            </td>
+                        </tr>
+                    ))
+                }
 
-        {
-            proofs.map((proof) => (
-                <li key={proof.hash}>
-                    {new Date(proof.timestamp * 1000).toLocaleString()} - {proof.hash} - {proof.blockNumber}
-                </li>
-            ))
-        }
+                </tbody>
+            </Table>
 
 
-    </>;
+        </>;
 
-  return (
-    <div className="demo">
-      {
-        !artifact ? <NoticeNoArtifact /> :
-          !contract ? <NoticeWrongNetwork /> :
-            demo
-      }
-    </div>
-  );
+    return (
+        <Container>
+            {
+                !artifact ? <NoticeNoArtifact/> :
+                    !contract ? <NoticeWrongNetwork/> :
+                        demo
+            }
+        </Container>
+    );
 }
 
 export default TransactionReader;
