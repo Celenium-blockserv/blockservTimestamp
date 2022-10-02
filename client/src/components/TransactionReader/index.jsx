@@ -8,6 +8,8 @@ import NoticeWrongNetwork from "./NoticeWrongNetwork";
 import Container from 'react-bootstrap/Container';
 
 import Table from 'react-bootstrap/Table';
+import Row from "react-bootstrap/Row";
+import Alert from "react-bootstrap/Alert";
 
 
 function TransactionReader({setProofOfOwnershipListMain}) {
@@ -24,9 +26,21 @@ function TransactionReader({setProofOfOwnershipListMain}) {
 
     useEffect(() => {
         const setProofOfOwnershipList = async () => {
-            let result = await contract.methods.getProofOfOwnership(recipient).call()
-            setProofs(result);
-            setProofOfOwnershipListMain(result)
+            try {
+                if ( recipient.length == 42) {
+                    let result = await contract.methods.getProofOfOwnership(recipient).call()
+                    setProofs(result);
+                    setProofOfOwnershipListMain(result)
+                } else {
+                    console.log('recipient.length= ' + recipient.length)
+
+                }
+
+            } catch (error) {
+                console.log(recipient.length)
+console.log('error')
+            }
+
         };
         if (contract) {
             if (recipient.length > 0) {
@@ -42,40 +56,52 @@ function TransactionReader({setProofOfOwnershipListMain}) {
     const demo =
         <>
             <Title/>
-            <Container fluid>
-                Ownership address =
-                <input
-                    onChange={handleChange}
-                    value={recipient}
-                />
-            </Container>
-            <Table>
-                <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Hash</th>
-                    <th>Block Number</th>
-                </tr>
-                </thead>
-                <tbody>
+            <Row>
+                <Container fluid>
+                    Ownership address =
+                    <input
+                        onChange={handleChange}
+                        value={recipient}
+                    />
+                </Container>
+            </Row>
+            <Row>
+                <Alert key='primary' variant='primary'>
+                    You can copy paste another address for the owner.
 
-                {
-                    proofs.map((proof) => (<tr key={proof.blockNumber}>
-                            <td>
-                                {new Date(proof.timestamp * 1000).toLocaleString()}
-                            </td>
-                            <td>
-                                {proof.hash}
-                            </td>
-                            <td>
-                                {proof.blockNumber}
-                            </td>
-                        </tr>
-                    ))
-                }
+                </Alert>
+            </Row>
+            <Row>
+                <Table>
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Hash</th>
+                        <th>Block Number</th>
+                    </tr>
+                    </thead>
+                    <tbody>
 
-                </tbody>
-            </Table>
+                    {
+                        proofs.map((proof) => (<tr key={proof.blockNumber}>
+                                <td>
+                                    {new Date(proof.timestamp * 1000).toLocaleString()}
+                                </td>
+                                <td>
+                                    {proof.hash}
+                                </td>
+                                <td>
+                                    {proof.blockNumber}
+                                </td>
+                            </tr>
+                        ))
+                    }
+
+                    </tbody>
+                </Table>
+            </Row>
+
+
 
 
         </>;
