@@ -10,7 +10,7 @@ import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
 
 
-function TransactionReader() {
+function TransactionReader({setProofOfOwnershipListMain}) {
     const {state: {artifact, accounts, contract}} = useEth();
 
     const [recipient, setRecipient] = useState("");
@@ -18,18 +18,22 @@ function TransactionReader() {
 
     useEffect(() => {
         if (accounts) {
-            setRecipient(accounts[0])
-
+            setRecipient(accounts[0]);
         }
     }, [accounts]);
 
-
-    const setTimestamp = async () => {
-
-        let result = await contract.methods.getProofOfOwnership(recipient).call()
-        console.log(result);
-        setProofs(result);
-    };
+    useEffect(() => {
+        const setProofOfOwnershipList = async () => {
+            let result = await contract.methods.getProofOfOwnership(recipient).call()
+            setProofs(result);
+            setProofOfOwnershipListMain(result)
+        };
+        if (contract) {
+            if (recipient.length > 0) {
+                setProofOfOwnershipList();
+            }
+        }
+    }, [contract,recipient,setProofOfOwnershipListMain]);
 
     function handleChange(event) {
         setRecipient(event.target.value);
@@ -44,9 +48,6 @@ function TransactionReader() {
                     onChange={handleChange}
                     value={recipient}
                 />
-                <button onClick={setTimestamp}>
-                    Get proof of owner ship
-                </button>
             </Container>
             <Table>
                 <thead>

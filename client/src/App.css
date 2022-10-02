@@ -3,7 +3,20 @@
     font-size: large;
 }
 
+.colClass{
+    padding-top: 10px;
+}
 .dropzone {
-         border: 2px blue dashed;
+    padding-top: 10px;
+
+    border: 2px blue dashed;
     border-radius:10px;
      }
+
+#App {
+    --celenium-orange: rgb(255, 130, 77);
+    --celenium-grey: rgb(111, 119, 136);
+    --celenium-back-grey: rgb(156,184,191);
+    --celenium-fond-catawba: #582630;
+    --celenium-yellow: #F7EE7F;
+}

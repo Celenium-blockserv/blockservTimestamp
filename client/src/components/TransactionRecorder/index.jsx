@@ -9,31 +9,6 @@ import Container from 'react-bootstrap/Container';
 
 import Table from 'react-bootstrap/Table';
 
-// const styles = StyleSheet.create({
-//     text: {
-//         height: 40,
-//         color: 'white',
-//         fontFamily: "'Inknut Antiqua', sans-serif"
-// },
-//     input: {
-//         height: 40,
-//         margin: 12,
-//         borderWidth: 1,
-//         padding: 10,
-//         color: 'var(--celenium-yellow)',
-//         fontFamily: "'Inknut Antiqua', sans-serif"
-//
-//     },
-//     button: {
-//         height: 40,
-//         margin: 12,
-//         borderWidth: 1,
-//         padding: 10,
-//         color: 'var(--celenium-grey)',
-//
-//     }
-// });
-
 function TransactionRecorder({fileHash}) {
     const { state: { artifact,   accounts, contract } } = useEth();
 
