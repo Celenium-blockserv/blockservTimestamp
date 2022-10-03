@@ -16,12 +16,10 @@ function Main() {
 
     const setUploadedFileHash = async (childData) => {
         setFileHash(childData);
-
     }
 
     const setProofOfOwnershipListMain = async (childData) => {
         setProofOfOwnershipList(childData);
-
     }
 
     return (<>
@@ -35,8 +33,6 @@ function Main() {
                 <hr/>
                 <Footer/>
             </Container>
-
-
         </>
 
     );

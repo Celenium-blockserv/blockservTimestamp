@@ -35,8 +35,6 @@ function FileUpload({setUploadedFileHash, proofOfOwnershipList}) {
 
     function isAlreadyRecorded(hashAsString) {
         return ( proofOfOwnershipList.filter(p => ( p.hash === hashAsString )).length > 0)
-
-
     }
 
 
@@ -112,16 +110,7 @@ function FileUpload({setUploadedFileHash, proofOfOwnershipList}) {
                             </Alert>
                 }
 
-
-
             </Row>
-
-
-
-
-
-
-
         </Container>
 
     );

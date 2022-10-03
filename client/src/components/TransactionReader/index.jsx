@@ -27,27 +27,23 @@ function TransactionReader({setProofOfOwnershipListMain}) {
     useEffect(() => {
         const setProofOfOwnershipList = async () => {
             try {
-                if ( recipient.length == 42) {
+                if (recipient.length === 42) {
                     let result = await contract.methods.getProofOfOwnership(recipient).call()
                     setProofs(result);
                     setProofOfOwnershipListMain(result)
                 } else {
                     console.log('recipient.length= ' + recipient.length)
-
                 }
-
             } catch (error) {
-                console.log(recipient.length)
-console.log('error')
+                console.log('error')
             }
-
         };
         if (contract) {
             if (recipient.length > 0) {
                 setProofOfOwnershipList();
             }
         }
-    }, [contract,recipient,setProofOfOwnershipListMain]);
+    }, [contract, recipient, setProofOfOwnershipListMain]);
 
     function handleChange(event) {
         setRecipient(event.target.value);
@@ -68,7 +64,6 @@ console.log('error')
             <Row>
                 <Alert key='primary' variant='primary'>
                     You can copy paste another address for the owner.
-
                 </Alert>
             </Row>
             <Row>
@@ -100,10 +95,6 @@ console.log('error')
                     </tbody>
                 </Table>
             </Row>
-
-
-
-
         </>;
 
     return (
