@@ -1,5 +1,9 @@
+import { useTranslation } from "react-i18next";
+
 function Title() {
-  return <h2>Transaction Reader</h2>;
+  const { t } = useTranslation();
+
+  return <h2>{t("titleTransactionReader")}</h2>;
 }
 
 export default Title;

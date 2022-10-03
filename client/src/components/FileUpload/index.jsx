@@ -9,6 +9,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Table from 'react-bootstrap/Table';
 
+import { useTranslation } from "react-i18next";
 
 function FileUpload({setUploadedFileHash, proofOfOwnershipList}) {
     const Status = {
@@ -17,9 +18,9 @@ function FileUpload({setUploadedFileHash, proofOfOwnershipList}) {
         AlreadyRecorded: "already recorded",
     };
     const [currentStatus, setCurrentStatus] = useState(Status.Waiting);
-
     const [selectedFile, setSelectedFile] = useState('No file selected yet');
     const [computedHash, setComputedHash] = useState([]);
+    const { t } = useTranslation();
 
 
     async function parse(file) {
@@ -71,7 +72,7 @@ function FileUpload({setUploadedFileHash, proofOfOwnershipList}) {
                         <section>
                             <div {...getRootProps()}>
                                 <input {...getInputProps()} />
-                                <p>Drag 'n' drop the file here</p>
+                                <p>{t("dragNDropFileUpload")}</p>
                             </div>
                         </section>
                     )}
@@ -82,31 +83,28 @@ function FileUpload({setUploadedFileHash, proofOfOwnershipList}) {
                     <Table>
                         <tbody>
                         <tr>
-                            <td>Selected file:</td>
+                            <td>{t("selectedFileUpload")}</td>
                             <td>{selectedFile.path}</td>
                         </tr>
                         <tr>
-                            <td>Computed hash:</td>
+                            <td>{t("hashFileUpload")}</td>
                             <td>{computedHash}</td>
                         </tr>
                         </tbody>
                     </Table>
-
-
-
                     </Col>
             </Row>
             <Row>
 
                 {
                     (currentStatus === Status.AlreadyRecorded) ? <Alert key='warning' variant='warning'>
-                            This hash is already recorded for current metamask account!
+                            {t("warningFileUpload")}
                         </Alert> :
                         (currentStatus === Status.Waiting) ? <Alert key='primary' variant='primary'>
-                                Select a file to compute its' hash
+                                {t("primaryFileUpload")}
                             </Alert> :
                             <Alert key='success' variant='success'>
-                                Hash could be computed. If you want, you can select another file to replace this one.
+                                {t("successFileUpload")}
                             </Alert>
                 }
 

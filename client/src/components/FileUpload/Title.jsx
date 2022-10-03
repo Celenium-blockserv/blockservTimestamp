@@ -1,11 +1,15 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 
 
 function Title() {
-  return (<>
-          <h2>Hash computation</h2>
-          Select a file to compute its sha256 hash.
+
+    const { t } = useTranslation();
+
+    return (<>
+          <h2>{t("titleFileUpload")}</h2>
+            {t("explicationsFileUpload")}
   </>
 
   );

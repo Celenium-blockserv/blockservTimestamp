@@ -10,6 +10,7 @@ import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
 import Row from "react-bootstrap/Row";
 import Alert from "react-bootstrap/Alert";
+import { useTranslation } from "react-i18next";
 
 
 function TransactionReader({setProofOfOwnershipListMain}) {
@@ -17,6 +18,7 @@ function TransactionReader({setProofOfOwnershipListMain}) {
 
     const [recipient, setRecipient] = useState("");
     const [proofs, setProofs] = useState([]);
+    const { t } = useTranslation();
 
     useEffect(() => {
         if (accounts) {
@@ -54,7 +56,7 @@ function TransactionReader({setProofOfOwnershipListMain}) {
             <Title/>
             <Row>
                 <Container fluid>
-                    Ownership address =
+                    {t("ownershipTransactionReader")}
                     <input
                         onChange={handleChange}
                         value={recipient}
@@ -63,16 +65,16 @@ function TransactionReader({setProofOfOwnershipListMain}) {
             </Row>
             <Row>
                 <Alert key='primary' variant='primary'>
-                    You can copy paste another address for the owner.
+                    {t("primaryTransactionReader")}
                 </Alert>
             </Row>
             <Row>
                 <Table>
                     <thead>
                     <tr>
-                        <th>Date</th>
-                        <th>Hash</th>
-                        <th>Block Number</th>
+                        <th>{t("dateTransactionReader")}</th>
+                        <th>{t("hashTransactionReader")}</th>
+                        <th>{t("blockNumberTransactionReader")}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -86,7 +88,7 @@ function TransactionReader({setProofOfOwnershipListMain}) {
                                     {proof.hash}
                                 </td>
                                 <td>
-                                    {proof.blockNumber}
+                                    <a href={"https://polygonscan.com/block/"+proof.blockNumber}>{proof.blockNumber}</a>
                                 </td>
                             </tr>
                         ))

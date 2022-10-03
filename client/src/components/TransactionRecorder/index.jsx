@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from "react";
 
 import useEth from "../../contexts/EthContext/useEth";
+
+import { useTranslation } from "react-i18next";
+
 import Title from "./Title";
 
 import NoticeNoArtifact from "./NoticeNoArtifact";
@@ -14,6 +17,7 @@ function TransactionRecorder({fileHash}) {
 
     const [hash, setHash] = useState(0);
     const [recipient, setRecipient] = useState("");
+    const { t } = useTranslation();
 
     useEffect(() => {
         if (accounts) {
@@ -44,8 +48,8 @@ function TransactionRecorder({fileHash}) {
         <Table>
             <thead>
             <tr>
-                <th>Hash</th>
-                <th>Ownership address</th>
+                <th>{t("hashTransactionRecorder")}</th>
+                <th>{t("ownershipTransactionRecorder")}</th>
                 <th></th>
             </tr>
             </thead>
@@ -58,7 +62,7 @@ function TransactionRecorder({fileHash}) {
                />
                 </td>
                 <td>
-                    <button  onClick={setTimestamp}> Record transaction</button>
+                    <button  onClick={setTimestamp}> {t("submitTransactionRecorder")}</button>
                 </td>
             </tr>
             </tbody>
