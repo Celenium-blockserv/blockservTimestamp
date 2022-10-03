@@ -13,6 +13,10 @@
     border-radius:10px;
      }
 
+.nav-item {
+    padding-right: 10px;
+
+}
 #App {
     --celenium-orange: rgb(255, 130, 77);
     --celenium-grey: rgb(111, 119, 136);

@@ -1,8 +1,13 @@
 import logo from '../../assets/LogoCeleniumWeb3.png';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
-
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "../LanguageSwitcher";
+import Nav from 'react-bootstrap/Nav';
 function Header() {
+
+    const { t } = useTranslation();
+
     return (
         <>
             <Navbar bg="dark" variant="dark">
@@ -15,8 +20,13 @@ function Header() {
                             height="50"
                             className="d-inline-block align-top"
                         />{' '}
-                        Celenium Timestamper on Polygon Mainnet
+                        {t("titleMain")}
                     </Navbar.Brand>
+                    <Nav.Item>
+                        <LanguageSwitcher />
+
+                    </Nav.Item>
+
                 </Container>
             </Navbar>
         </>
