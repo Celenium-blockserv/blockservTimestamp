@@ -4,6 +4,9 @@ import Navbar from 'react-bootstrap/Navbar';
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "../LanguageSwitcher";
 import Nav from 'react-bootstrap/Nav';
+
+import "./header.css"
+
 function Header() {
 
     const { t } = useTranslation();

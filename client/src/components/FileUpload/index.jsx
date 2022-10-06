@@ -10,7 +10,7 @@ import Col from 'react-bootstrap/Col';
 import Table from 'react-bootstrap/Table';
 
 import { useTranslation } from "react-i18next";
-
+import "./fileupload.css"
 function FileUpload({setUploadedFileHash, proofOfOwnershipList}) {
     const Status = {
         Waiting: "waiting",
@@ -35,7 +35,14 @@ function FileUpload({setUploadedFileHash, proofOfOwnershipList}) {
     }
 
     function isAlreadyRecorded(hashAsString) {
-        return ( proofOfOwnershipList.filter(p => ( p.hash === hashAsString )).length > 0)
+
+        if (proofOfOwnershipList.length > 0) {
+            return ( proofOfOwnershipList.filter(p => ( p.hash === hashAsString )).length > 0)
+
+        } else {
+            return false;
+        }
+
     }
 
 
