@@ -13,6 +13,7 @@ contract Timestamper is Ownable {
   }
 
   mapping ( address => ProofOfOwnership[]) proofs;
+  mapping ( string => address) hashesToAddress;
 
   function timestamp(address _ownerAddress, string memory hash) public onlyOwner {
 
@@ -22,10 +23,14 @@ contract Timestamper is Ownable {
     currentProofOfOwnership.blockNumber = block.number;
 
     proofs[_ownerAddress].push(currentProofOfOwnership);
+    hashesToAddress[hash] = _ownerAddress;
   }
 
   function getProofOfOwnership(address _ownerAddress) public view returns (ProofOfOwnership[] memory) {
     return proofs[_ownerAddress];
   }
 
+  function getOwnerAddress(string memory _hash) public view returns (address) {
+    return hashesToAddress[_hash];
+  }
 }
