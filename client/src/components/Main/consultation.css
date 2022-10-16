@@ -1,0 +1,20 @@
+.consultation-style button {
+    border-radius: 10px;
+    border: 4px solid var(--celenium-grey);
+    margin: 20px;
+    color: var(--celenium-black);
+    background-color: var(--celenium-white);
+}
+
+.consultation-style button:hover {
+    border-radius: 20px;
+    border: 4px solid var(--celenium-white);
+    margin: 20px;
+    color: var(--celenium-white);
+    background-color: var(--celenium-grey);
+}
+
+.consultation-tab {
+    scroll-behaviour: smooth;
+
+}

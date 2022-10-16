@@ -1,0 +1,22 @@
+.consignation-style button {
+    border-radius: 10px;
+    border: 4px solid var(--celenium-grey);
+    margin: 20px;
+    color: var(--celenium-black);
+    background-color: var(--celenium-white);
+}
+
+.consignation-style button:hover {
+    border-radius: 20px;
+    border: 4px solid var(--celenium-white);
+    margin: 20px;
+    color: var(--celenium-white);
+    background-color: var(--celenium-grey);
+}
+
+.consignation-style button:disabled,
+button[disabled]{
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+}

@@ -6,6 +6,6 @@
 .dropzone {
     padding-top: 10px;
 
-    border: 2px blue dashed;
+    border: 4px blue dashed;
     border-radius:10px;
 }

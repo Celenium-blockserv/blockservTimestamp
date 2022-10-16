@@ -31,9 +31,7 @@ function TransactionRecorder({fileHash}) {
     }, [fileHash]);
 
     const setTimestamp = async () => {
-
         await contract.methods.timestamp(recipient, hash,).send( { from: accounts[0] });
-
     };
 
     function handleChange(event)

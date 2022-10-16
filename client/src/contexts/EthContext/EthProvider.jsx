@@ -18,6 +18,7 @@ function EthProvider({ children }) {
           address = artifact.networks[networkID].address;
           contract = new web3.eth.Contract(abi, address);
         } catch (err) {
+          console.error('EthProvider init err');
           console.error(err);
         }
         dispatch({
@@ -33,6 +34,8 @@ function EthProvider({ children }) {
         const artifact = require("../../contracts/Timestamper.json");
         init(artifact);
       } catch (err) {
+        console.error('EthProvider tryinit err');
+
         console.error(err);
       }
     };

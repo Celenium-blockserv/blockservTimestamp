@@ -1,11 +1,13 @@
-.navbar-brand
-{
-    font-size: large;
+.header-style {
+    background-color: var(--celenium-back-grey);
+    color: var(--celenium-white);
 }
 
+.topright
+{
 
+    position: fixed;
 
-.nav-item {
-    padding-right: 10px;
-
+    top: 0px;
+    right: 0px;
 }

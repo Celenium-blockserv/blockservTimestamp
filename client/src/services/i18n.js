@@ -10,7 +10,23 @@ const resources = {
 
     en: {
         translation: {
-            app_name: "Blockserv Timestamper",
+            app_name: "CONSIGNATION BLOCKCHAIN",
+            encodingMain:"1) Encoding",
+            consignationMain:"2) Consignation",
+            consultationMain:"3) Consultation",
+
+            pricingButtonFooter:"Pricing",
+            contactButtonFooter:"Contact",
+            dragNDropEncoder: "Drag 'n' drop the file here",
+            warningEncoder: "Warning: your file is not stored on this site",
+
+            hashConsignation:"Numerical signature of file:",
+            ownerConsignation:"Owner of the file:",
+            inputTextConsignation:"Polygon Blockchain public address",
+            recordConsignation:"Record",
+
+
+
             titleMain: "Celenium Timestamper on Polygon Mainnet",
             dragNDropFileUpload: "Drag 'n' drop the file here",
             titleFileUpload:"Hash computation",
@@ -37,7 +53,22 @@ const resources = {
     },
     fr: {
         translation: {
-            app_name: "Timestamper par Celenium",
+            app_name: "BLOCKCHAIN DE CONSIGNATION",
+            encodingMain:"1) Encodage",
+            consignationMain:"2) Consignation",
+            consultationMain:"3) Consultation",
+
+            pricingButtonFooter:"Tarification",
+            contactButtonFooter:"Assistance",
+            dragNDropEncoder: "Déposer le fichier ici",
+            warningEncoder: "Attention: votre fichier n’est pas conservé sur ce site",
+
+            hashConsignation:"Empreinte numérique du fichier:",
+            ownerConsignation:"Compte dépositaire de l’encodage cryptographique:",
+            inputTextConsignation:"Adresse publique sur la blockchain Polygon.",
+            recordConsignation:"Enregistrer la consignation",
+
+
             titleMain: "Timestamper par Celenium sur le Mainnet Polygon",
             dragNDropFileUpload: "Déposer le fichier ici",
             titleFileUpload:"Calcul du hash",

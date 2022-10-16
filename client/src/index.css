@@ -1,6 +1,9 @@
 html {
-  font-size: 14px;
-  font-family: sans-serif;
+  --celenium-back-grey: rgb(156,184,191);
+  --celenium-grey: rgb(111, 119, 136);
+  --celenium-white: rgb(252, 249, 238);
+  --celenium-black: rgb(30, 27, 24);
+  --celenium-purple: rgb(125, 91, 166);
 }
 
 * {
@@ -11,8 +14,7 @@ html {
 #root {
   width: 100vw;
   height: 100vh;
-}
-
-input {
-  width: 270px;
+  background-color: var(--celenium-grey);
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
 }
