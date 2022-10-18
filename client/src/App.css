@@ -7,7 +7,7 @@
 .body-style {
     background-color: var(--celenium-grey);
     color: var(--celenium-white);
-    height: 2000px;
+    height: 4000px;
     overflow: auto;
     flex: 1;
 }

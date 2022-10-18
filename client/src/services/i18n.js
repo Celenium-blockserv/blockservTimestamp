@@ -46,7 +46,7 @@ const resources = {
             primaryTransactionReader:"Copy paste another address for the owner if needed.",
             dateTransactionReader:"Date ( dd/mm/yy )",
             hashTransactionReader:"Hash recorded on blockchain",
-            blockNumberTransactionReader:"Block number on Polygon MainNet",
+            blockNumberTransactionReader:"Block",
             contactUsFooter:"Contact us",
 
         },
@@ -87,7 +87,7 @@ const resources = {
             primaryTransactionReader:"Coller une autre adresse est possible.",
             dateTransactionReader:"Date ( dd/mm/yy )",
             hashTransactionReader:"Hash enregistré sur la blockchain",
-            blockNumberTransactionReader:"Numéro de block sur Polygon MainNet",
+            blockNumberTransactionReader:"Block",
             contactUsFooter:"Nous contacter",
 
         },

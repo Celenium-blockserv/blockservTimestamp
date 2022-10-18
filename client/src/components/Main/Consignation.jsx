@@ -11,11 +11,13 @@ import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
 
 import "./consignation.css"
+import QRCode from "qrcode.react";
 function Consignation({fileHash, setOwnerInParent}) {
     const { state: { accounts, contract } } = useEth();
 
     const [recipient, setRecipient] = useState("");
     const [hashOwner, setHashOwner] = useState('');
+    const [blockNumber, setBlockNumber] = useState(0);
 
     useEffect(() => {
         const setHashOwnerFromPolygon = async () => {
@@ -44,11 +46,26 @@ function Consignation({fileHash, setOwnerInParent}) {
     }
 
     const setTimestamp = async () => {
-        await contract.methods.timestamp(recipient, fileHash,).send( { from: accounts[0] });
+        let response = await contract.methods.timestamp(recipient, fileHash,).send( { from: accounts[0] });
+        if ( response.blockNumber) {
+            setBlockNumber(response.blockNumber);
+        }
+        console.log(response);
     };
 
     const {t} = useTranslation();
-
+    const downloadQRCode = () => {
+        const qrCodeURL = document.getElementById('qrCodeId')
+            .toDataURL("image/png")
+            .replace("image/png", "image/octet-stream");
+        console.log(qrCodeURL)
+        let aEl = document.createElement("a");
+        aEl.href = qrCodeURL;
+        aEl.download = "QR_Code.png";
+        document.body.appendChild(aEl);
+        aEl.click();
+        document.body.removeChild(aEl);
+    }
 
     return (
         <>
@@ -96,6 +113,27 @@ function Consignation({fileHash, setOwnerInParent}) {
                         </>
 
                     }
+                <Row>
+                    {
+                        blockNumber === 0 ? <></> : <>
+                            <Col></Col>
+                            <Col className="consignation-style  justify-content-center">
+                                <QRCode
+                                    id="qrCodeId"
+                                    value={"https://polygonscan.com/block/"+blockNumber}
+                                    size={128}
+                                    bgColor={"#ffffff"}
+                                    fgColor={"#000000"}
+                                    level={"L"}
+                                    includeMargin={false}
+                                    onClick={downloadQRCode}
+                                />
+                            </Col>
+                            <Col></Col>
+                        </>
+                    }
+
+                </Row>
 
             </Container>
         </>

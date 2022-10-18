@@ -8,6 +8,7 @@ import Col from 'react-bootstrap/Col';
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from 'react-bootstrap/Form';
+import QRCode from 'qrcode.react';
 
 
 import "./consultation.css"
@@ -101,6 +102,19 @@ function Consultation({owner, fileHash}) {
     {    setEditableHash( event.target.value);
     }
 
+    const downloadQRCode = (event) => {
+        console.log(event)
+        const qrCodeURL = document.getElementById( event.target.id )
+            .toDataURL("image/png")
+            .replace("image/png", "image/octet-stream");
+        console.log(qrCodeURL)
+        let aEl = document.createElement("a");
+        aEl.href = qrCodeURL;
+        aEl.download = "QR_Code.png";
+        document.body.appendChild(aEl);
+        aEl.click();
+        document.body.removeChild(aEl);
+    }
 
     return (
         <>
@@ -139,6 +153,7 @@ function Consultation({owner, fileHash}) {
                                     <th>{t("dateTransactionReader")}</th>
                                     <th>{t("hashTransactionReader")}</th>
                                     <th>{t("blockNumberTransactionReader")}</th>
+                                    <th> QR Code</th>
                                 </> : <></>
                             }
 
@@ -156,6 +171,18 @@ function Consultation({owner, fileHash}) {
                                     </td>
                                     <td>
                                         <a href={"https://polygonscan.com/block/"+proof.blockNumber}>{proof.blockNumber}</a>
+                                    </td>
+                                    <td>
+                                        <QRCode
+                                            id={"qrCodeId" + proof.blockNumber }
+                                            value={"https://polygonscan.com/block/"+proof.blockNumber}
+                                            size={128}
+                                            bgColor={"#ffffff"}
+                                            fgColor={"#000000"}
+                                            level={"L"}
+                                            includeMargin={false}
+                                            onClick={downloadQRCode}
+                                        />
                                     </td>
                                 </tr>
                             ))
