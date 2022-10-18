@@ -3,6 +3,8 @@ import React, {useState} from "react";
 
 import {useTranslation} from "react-i18next";
 
+import { EthProvider } from "../../contexts/EthContext";
+
 
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
@@ -35,15 +37,23 @@ function Main() {
                 <Tabs fill defaultActiveKey={1} id="uncontrolled-tab-example">
 
                     <Tab eventKey={1} title={t("encodingMain")} >
+
                         <Encoder setUploadedFileHash={setUploadedFileHash}></Encoder>
+
                     </Tab>
 
 
                     <Tab eventKey={2} title={t("consignationMain")}  >
+                        <EthProvider>
+
                         <Consignation fileHash={fileHash} setOwnerInParent={setOwnerInParent}></Consignation>
-                    </Tab>
+                    </EthProvider>
+                </Tab>
                     <Tab eventKey={3} title={t("consultationMain")}>
+                        <EthProvider>
+
                         <Consultation owner={owner} fileHash={fileHash}></Consultation>
+                        </EthProvider>
 
                     </Tab>
 

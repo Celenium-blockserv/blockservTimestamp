@@ -181,7 +181,7 @@ function Consultation({owner, fileHash}) {
 
                     {    // eslint-disable-next-line
                         hashOwner == 0x0 ? <></> : <><Row>
-                        <Col xs={5}>Cette empreinte numérique a été déposée par: </Col>
+                        <Col xs={6}>Cette empreinte numérique a été déposée par: </Col>
                         <Col>{hashOwner}</Col>
                         </Row></>
                     }
