@@ -18,3 +18,8 @@
     scroll-behaviour: smooth;
 
 }
+
+Table, th, td {
+    color: var(--celenium-grey);
+
+}

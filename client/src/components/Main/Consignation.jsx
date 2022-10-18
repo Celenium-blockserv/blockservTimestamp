@@ -12,7 +12,7 @@ import Alert from 'react-bootstrap/Alert';
 
 import "./consignation.css"
 function Consignation({fileHash, setOwnerInParent}) {
-    const { state: { artifact,   accounts, contract } } = useEth();
+    const { state: { accounts, contract } } = useEth();
 
     const [recipient, setRecipient] = useState("");
     const [hashOwner, setHashOwner] = useState('');
@@ -20,6 +20,7 @@ function Consignation({fileHash, setOwnerInParent}) {
     useEffect(() => {
         const setHashOwnerFromPolygon = async () => {
             try {
+                // eslint-disable-next-line
                 if (fileHash != 0x0) {
                     let result = await contract.methods.getOwnerAddress(fileHash).call()
                     setHashOwner(result)
@@ -69,12 +70,16 @@ function Consignation({fileHash, setOwnerInParent}) {
                 <Row>
                     <Col></Col>
                     <Col className="consignation-style  justify-content-center">
-                        <Button onClick={setTimestamp} disabled={!(hashOwner == 0x0)}>{t("recordConsignation")}</Button></Col>
+                        <Button onClick={setTimestamp} disabled={
+                            // eslint-disable-next-line
+                            !(hashOwner == 0x0)
+                        }>{t("recordConsignation")}</Button></Col>
                     <Col></Col>
                 </Row>
 
                 <br/>
                     {
+                        // eslint-disable-next-line
                         hashOwner == 0x0 ? <></> : <>
 
                         <Alert  variant='danger'>

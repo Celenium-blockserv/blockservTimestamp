@@ -13,48 +13,57 @@ import Form from 'react-bootstrap/Form';
 import "./consultation.css"
 import Table from "react-bootstrap/Table";
 function Consultation({owner, fileHash}) {
-    const { state: { artifact,   accounts, contract } } = useEth();
+    const { state: {  contract } } = useEth();
     const [proofs, setProofs] = useState([]);
     const [hashOwner, setHashOwner] = useState('');
+
+    const [editableOwner, setEditableOwner] = useState('');
+    const [editableHash, setEditableHash] = useState([]);
+
+    useEffect( () => {
+        setEditableOwner(owner);
+        setEditableHash(fileHash);
+    }, [owner, fileHash]);
+
 
     const {t} = useTranslation();
 
     useEffect(() => {
         const setProofOfOwnershipList = async () => {
             try {
-                if (owner.length === 42) {
-                    let result = await contract.methods.getProofOfOwnership(owner).call()
+                if (editableOwner.length === 42) {
+                    let result = await contract.methods.getProofOfOwnership(editableOwner).call()
                     setProofs(result);
                 } else {
-                    console.log('recipient.length= ' + owner.length)
+                    console.log('recipient.length= ' + editableOwner.length)
                 }
             } catch (error) {
                 console.log('error')
             }
         };
         if (contract) {
-            if (owner.length > 0) {
+            if (editableOwner.length > 0) {
                 setProofOfOwnershipList();
             }
         }
-    }, [contract, owner]);
+    }, [contract, editableOwner]);
 
     function handleClic() {
 
         const setProofOfOwnershipList = async () => {
             try {
-                if (owner.length === 42) {
-                    let result = await contract.methods.getProofOfOwnership(owner).call()
+                if (editableOwner.length === 42) {
+                    let result = await contract.methods.getProofOfOwnership(editableOwner).call()
                     setProofs(result);
                 } else {
-                    console.log('recipient.length= ' + owner.length)
+                    console.log('recipient.length= ' + editableOwner.length)
                 }
             } catch (error) {
                 console.log('error')
             }
         };
         if (contract) {
-            if (owner.length > 0) {
+            if (editableOwner.length > 0) {
                 setProofOfOwnershipList();
             }
         }
@@ -64,24 +73,34 @@ function Consultation({owner, fileHash}) {
 
         const setHashOwnerFromPolygon = async () => {
             try {
-                if (owner.length === 42) {
-                    let result = await contract.methods.getOwnerAddress(fileHash).call()
+                console.log(fileHash.length)
+                if (editableHash.length === 64) {
+                    let result = await contract.methods.getOwnerAddress(editableHash).call()
                     setHashOwner(result)
 
                     //setProofs(result);
                 } else {
-                    console.log('recipient.length= ' + owner.length)
+                    console.log('editableHash.length= ' + editableHash.length)
                 }
             } catch (error) {
                 console.log('error')
             }
         };
         if (contract) {
-            if (owner.length > 0) {
+            if (editableHash.length > 0) {
                 setHashOwnerFromPolygon();
             }
         }
     }
+
+    function handleChange(event)
+    {    setEditableOwner( event.target.value);
+    }
+
+    function handleHashChange(event)
+    {    setEditableHash( event.target.value);
+    }
+
 
     return (
         <>
@@ -92,8 +111,16 @@ function Consultation({owner, fileHash}) {
 
                 <br/>
                 <Row>
-                    <Col xs={5}>Compte du dépositaire: </Col>
-                    <Col>{owner}</Col>
+                    <Col xs={5}><Form.Label htmlFor="ownerAddress">Compte du dépositaire:</Form.Label></Col>
+
+
+
+                    <Col>
+                        <Form.Control type="text" id="ownerAddress" onChange={handleChange}
+                                      value={editableOwner}/>
+                        <Form.Text id="passwordHelpBlock" muted>{t("inputTextConsignation")}</Form.Text>
+
+                        </Col>
                 </Row>
                 <br/>
 
@@ -107,9 +134,14 @@ function Consultation({owner, fileHash}) {
                     <Table>
                         <thead>
                         <tr>
-                            <th>{t("dateTransactionReader")}</th>
-                            <th>{t("hashTransactionReader")}</th>
-                            <th>{t("blockNumberTransactionReader")}</th>
+                            {
+                                proofs.length > 0 ? <>
+                                    <th>{t("dateTransactionReader")}</th>
+                                    <th>{t("hashTransactionReader")}</th>
+                                    <th>{t("blockNumberTransactionReader")}</th>
+                                </> : <></>
+                            }
+
                         </tr>
                         </thead>
                         <tbody>
@@ -135,8 +167,10 @@ function Consultation({owner, fileHash}) {
 
 
                 <Row>
-                    <Col xs={5}>Empreinte numérique: </Col>
-                    <Col>{fileHash}</Col>
+                    <Col xs={5}><Form.Label htmlFor="editableFileHash">Empreinte numérique: </Form.Label></Col>
+                    <Col> <Form.Control type="text" id="editableFileHash" onChange={handleHashChange}
+                                        value={editableHash}/>
+                        <Form.Text id="passwordHelpBlock" muted>Empreinte numérique sur 64 nombre hexadecimaux</Form.Text></Col>
                 </Row>
 
                 <Row>
@@ -145,7 +179,7 @@ function Consultation({owner, fileHash}) {
                     <Col></Col>
                 </Row>
 
-                    {
+                    {    // eslint-disable-next-line
                         hashOwner == 0x0 ? <></> : <><Row>
                         <Col xs={5}>Cette empreinte numérique a été déposée par: </Col>
                         <Col>{hashOwner}</Col>
