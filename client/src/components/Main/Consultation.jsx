@@ -13,6 +13,7 @@ import QRCode from 'qrcode.react';
 
 import "./consultation.css"
 import Table from "react-bootstrap/Table";
+import logo from "../../assets/LogoCeleniumWeb3.png";
 function Consultation({owner, fileHash}) {
     const { state: {  contract } } = useEth();
     const [proofs, setProofs] = useState([]);
@@ -110,12 +111,16 @@ function Consultation({owner, fileHash}) {
         console.log(qrCodeURL)
         let aEl = document.createElement("a");
         aEl.href = qrCodeURL;
-        aEl.download = "QR_Code.png";
+        aEl.download = "QR_Code_" + event.target.id + ".png";
         document.body.appendChild(aEl);
         aEl.click();
         document.body.removeChild(aEl);
     }
-
+    const imgSettings = {
+        src: logo,
+        height:40,
+        width:40
+    }
     return (
         <>
             <Container fluid >
@@ -179,9 +184,10 @@ function Consultation({owner, fileHash}) {
                                             size={128}
                                             bgColor={"#ffffff"}
                                             fgColor={"#000000"}
-                                            level={"L"}
+                                            level={"H"}
                                             includeMargin={false}
                                             onClick={downloadQRCode}
+                                            imageSettings={imgSettings}
                                         />
                                     </td>
                                 </tr>

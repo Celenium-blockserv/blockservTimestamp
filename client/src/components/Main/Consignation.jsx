@@ -9,6 +9,7 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
+import logo from "../../assets/LogoCeleniumWeb3.png";
 
 import "./consignation.css"
 import QRCode from "qrcode.react";
@@ -66,7 +67,11 @@ function Consignation({fileHash, setOwnerInParent}) {
         aEl.click();
         document.body.removeChild(aEl);
     }
-
+    const imgSettings = {
+        src: logo,
+        height:40,
+        width:40
+    }
     return (
         <>
             <Container fluid>
@@ -124,9 +129,10 @@ function Consignation({fileHash, setOwnerInParent}) {
                                     size={128}
                                     bgColor={"#ffffff"}
                                     fgColor={"#000000"}
-                                    level={"L"}
+                                    level={"H"}
                                     includeMargin={false}
                                     onClick={downloadQRCode}
+                                    imageSettings={imgSettings}
                                 />
                             </Col>
                             <Col></Col>
