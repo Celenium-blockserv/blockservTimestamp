@@ -9,6 +9,7 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from 'react-bootstrap/Form';
 import QRCode from 'qrcode.react';
+import inconeQR from "../../assets/IconeQR.png";
 
 
 import "./consultation.css"
@@ -117,7 +118,7 @@ function Consultation({owner, fileHash}) {
         document.body.removeChild(aEl);
     }
     const imgSettings = {
-        src: logo,
+        src: inconeQR,
         height:40,
         width:40
     }
