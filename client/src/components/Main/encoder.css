@@ -2,6 +2,14 @@
     text-align: center;
     padding-top: 10px;
 
+    border: 2px var(--celenium-grey) dashed;
+    border-radius:10px;
+}
+
+.dropzone:hover {
+    text-align: center;
+    padding-top: 10px;
+
     border: 4px var(--celenium-grey) dashed;
     border-radius:10px;
 }

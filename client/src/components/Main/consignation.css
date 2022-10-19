@@ -21,6 +21,7 @@ button[disabled]{
     color: #666666;
 }
 
-qrcode-style:hover {
-    border: 1px solid #999999;
+canvas:hover {
+    border: 2px solid var(--celenium-grey);
 }
+

@@ -203,7 +203,7 @@ function Consultation({owner, fileHash}) {
                     <Col xs={5}><Form.Label htmlFor="editableFileHash">Empreinte numérique: </Form.Label></Col>
                     <Col> <Form.Control type="text" id="editableFileHash" onChange={handleHashChange}
                                         value={editableHash}/>
-                        <Form.Text id="passwordHelpBlock" muted>Empreinte numérique sur 64 nombre hexadecimaux</Form.Text></Col>
+                        <Form.Text id="passwordHelpBlock" muted>Empreinte numérique sur 64 digits en minuscules</Form.Text></Col>
                 </Row>
 
                 <Row>
