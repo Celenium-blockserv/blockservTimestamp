@@ -9,12 +9,12 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from 'react-bootstrap/Form';
 import QRCode from 'qrcode.react';
-import inconeQR from "../../assets/IconeQR.png";
+import inconeQR from "../../assets/IconeKeyQR.png";
 
 
 import "./consultation.css"
 import Table from "react-bootstrap/Table";
-import logo from "../../assets/LogoCeleniumWeb3.png";
+
 function Consultation({owner, fileHash}) {
     const { state: {  contract } } = useEth();
     const [proofs, setProofs] = useState([]);

@@ -9,8 +9,7 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
-import logo from "../../assets/LogoCeleniumWeb3.png";
-import inconeQR from "../../assets/IconeQR.png";
+import inconeQR from "../../assets/IconeKeyQR.png";
 
 import "./consignation.css"
 import QRCode from "qrcode.react";
