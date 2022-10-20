@@ -5,7 +5,7 @@ import {useTranslation} from "react-i18next";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 
-import logo from "../../assets/LogoCeleniumWeb3.png";
+import logo from "../../assets/LogoWEB3.png";
 import en from "../../assets/en.png";
 import fr from "../../assets/french.png";
 
@@ -55,7 +55,7 @@ function Header() {
                     <img
                         alt=""
                         src={logo}
-                        width="150"
+                        width="450"
                         height="150"
                         className="d-inline-block align-top"
                     />
