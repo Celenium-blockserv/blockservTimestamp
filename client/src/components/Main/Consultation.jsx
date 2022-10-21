@@ -19,6 +19,7 @@ function Consultation({owner, fileHash}) {
     const { state: {  contract } } = useEth();
     const [proofs, setProofs] = useState([]);
     const [hashOwner, setHashOwner] = useState('');
+    const [showQRCode, setShowQRCode] = useState(false);
 
     const [editableOwner, setEditableOwner] = useState('');
     const [editableHash, setEditableHash] = useState([]);
@@ -105,17 +106,19 @@ function Consultation({owner, fileHash}) {
     }
 
     const downloadQRCode = (event) => {
-        console.log(event)
         const qrCodeURL = document.getElementById( event.target.id )
             .toDataURL("image/png")
             .replace("image/png", "image/octet-stream");
-        console.log(qrCodeURL)
         let aEl = document.createElement("a");
         aEl.href = qrCodeURL;
         aEl.download = "QR_Code_" + event.target.id + ".png";
         document.body.appendChild(aEl);
         aEl.click();
         document.body.removeChild(aEl);
+    }
+
+    function toggleShowQRCodes() {
+        setShowQRCode(!showQRCode);
     }
     const imgSettings = {
         src: inconeQR,
@@ -127,18 +130,16 @@ function Consultation({owner, fileHash}) {
             <Container fluid >
                 <div className="consultation-tab">
 
-
-
                 <br/>
                 <Row>
-                    <Col xs={5}><Form.Label htmlFor="ownerAddress">Compte du dépositaire:</Form.Label></Col>
+                    <Col xs={5}><Form.Label htmlFor="ownerAddress">{t("ownerConsultation")}</Form.Label></Col>
 
 
 
                     <Col>
                         <Form.Control type="text" id="ownerAddress" onChange={handleChange}
                                       value={editableOwner}/>
-                        <Form.Text id="passwordHelpBlock" muted>{t("inputTextConsignation")}</Form.Text>
+                        <Form.Text id="passwordHelpBlock" muted>{t("inputTextConsultation")}</Form.Text>
 
                         </Col>
                 </Row>
@@ -146,7 +147,7 @@ function Consultation({owner, fileHash}) {
 
                 <Row>
                     <Col xs={3}></Col>
-                    <Col className="consultation-style  justify-content-center"><Button onClick={handleClic}>Liste des empreintes numeriques du dépositaire</Button></Col>
+                    <Col className="consultation-style  justify-content-center"><Button onClick={handleClic}>{t("listConsultation")}</Button></Col>
                     <Col></Col>
                 </Row>
 
@@ -156,10 +157,12 @@ function Consultation({owner, fileHash}) {
                         <tr>
                             {
                                 proofs.length > 0 ? <>
-                                    <th>{t("dateTransactionReader")}</th>
-                                    <th>{t("hashTransactionReader")}</th>
-                                    <th>{t("blockNumberTransactionReader")}</th>
-                                    <th> QR Code</th>
+                                    <th>{t("dateTransactionConsultation")}</th>
+                                    <th>{t("hashTransactionConsultation")}</th>
+                                    <th>{t("blockNumberTransactionConsultation")}</th>
+                                    <th onClick={toggleShowQRCodes}>{
+                                        showQRCode ? t("qrcodeConsultation") : t("qrcodeHideConsultation")
+                                    }</th>
                                 </> : <></>
                             }
 
@@ -178,7 +181,7 @@ function Consultation({owner, fileHash}) {
                                     <td>
                                         <a href={"https://polygonscan.com/block/"+proof.blockNumber}>{proof.blockNumber}</a>
                                     </td>
-                                    <td>
+                                    <td hidden={showQRCode}>
                                         <QRCode
                                             id={"qrCodeId" + proof.blockNumber }
                                             value={"https://polygonscan.com/block/"+proof.blockNumber}
@@ -189,6 +192,7 @@ function Consultation({owner, fileHash}) {
                                             includeMargin={false}
                                             onClick={downloadQRCode}
                                             imageSettings={imgSettings}
+
                                         />
                                     </td>
                                 </tr>
@@ -201,21 +205,21 @@ function Consultation({owner, fileHash}) {
 
 
                 <Row>
-                    <Col xs={5}><Form.Label htmlFor="editableFileHash">Empreinte numérique: </Form.Label></Col>
+                    <Col xs={5}><Form.Label htmlFor="editableFileHash">{t("hashConsultation")}</Form.Label></Col>
                     <Col> <Form.Control type="text" id="editableFileHash" onChange={handleHashChange}
                                         value={editableHash}/>
-                        <Form.Text id="passwordHelpBlock" muted>Empreinte numérique sur 64 digits en minuscules</Form.Text></Col>
+                        <Form.Text id="passwordHelpBlock" muted>{t("hashInputMsgConsultation")}</Form.Text></Col>
                 </Row>
 
                 <Row>
                     <Col xs={3}></Col>
-                    <Col className="consultation-style  justify-content-center"><Button onClick={handleClicHash}>Verifier quel est le dépositaire de l'empreinte numérique</Button></Col>
+                    <Col className="consultation-style  justify-content-center"><Button onClick={handleClicHash}>{t("getOwnerConsultation")}</Button></Col>
                     <Col></Col>
                 </Row>
 
                     {    // eslint-disable-next-line
                         hashOwner == 0x0 ? <></> : <><Row>
-                        <Col xs={6}>Cette empreinte numérique a été déposée par: </Col>
+                        <Col xs={6}>{t("recordedByConsultation")}</Col>
                         <Col>{hashOwner}</Col>
                         </Row></>
                     }
@@ -233,5 +237,3 @@ function Consultation({owner, fileHash}) {
 
 export default Consultation;
 
-// 0xB39CD751C2A472A500700039A5207C71DA4D469976368138267EC1535BCA237F
-// 0x0458fBac829b8e330C7f80253389CBdA7Ba369D5

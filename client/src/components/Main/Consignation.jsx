@@ -51,7 +51,6 @@ function Consignation({fileHash, setOwnerInParent}) {
         if ( response.blockNumber) {
             setBlockNumber(response.blockNumber);
         }
-        console.log(response);
     };
 
     const {t} = useTranslation();
@@ -59,7 +58,6 @@ function Consignation({fileHash, setOwnerInParent}) {
         const qrCodeURL = document.getElementById('qrCodeId')
             .toDataURL("image/png")
             .replace("image/png", "image/octet-stream");
-        console.log(qrCodeURL)
         let aEl = document.createElement("a");
         aEl.href = qrCodeURL;
         aEl.download = "QR_Code.png";
@@ -78,7 +76,7 @@ function Consignation({fileHash, setOwnerInParent}) {
                 <br/>
                 <Row>
                     <Col xs={5}>{t("hashConsignation")}</Col>
-                    <Col>{!fileHash ? '' : '0x' + fileHash.toString().toUpperCase()}</Col>
+                    <Col>{!fileHash ? '' :  fileHash.toString()}</Col>
                 </Row>
                 <br/>
                 <Row>
@@ -107,7 +105,7 @@ function Consignation({fileHash, setOwnerInParent}) {
                         <Alert  variant='danger'>
                             <Row>
 
-                            <Col xs={5}>L'empreinte numérique a déjà été déposée par </Col>
+                            <Col xs={5}>{t("alreadyConsignation")}</Col>
                                 <Col>{hashOwner}</Col>
 
                             </Row>

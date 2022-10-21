@@ -5,6 +5,9 @@ import Container from "react-bootstrap/Container";
 import Dropzone from "react-dropzone";
 
 import "./encoder.css"
+import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 function Encoder({setUploadedFileHash}) {
     const [selectedFile, setSelectedFile] = useState('');
@@ -36,6 +39,10 @@ function Encoder({setUploadedFileHash}) {
             })
     }
 
+    function copy() {
+        let copyText = document.getElementById("hashToCopy");
+        navigator.clipboard.writeText(copyText.textContent);
+    }
     return (
         <>
             <Container fluid>
@@ -65,7 +72,18 @@ function Encoder({setUploadedFileHash}) {
                 {t("warningEncoder")}
                 <br/>
                 <br/>
-                 {computedHash === '' ? '': 'Empreinte numérique de votre fichier: 0x' + computedHash.toString().toUpperCase()}
+                <Row>
+                    <Col>{computedHash === '' ? '': t("hashEncoder")}</Col>
+                    <Col  id='hashToCopy'>{computedHash === '' ? '': computedHash.toString()}</Col>
+                </Row>
+                <br/>
+
+                <Row>
+                    <Col></Col>
+                    <Col className="encoder-style  justify-content-center" ><Button onClick={copy}>{t("copyEncoder")}</Button></Col>
+                    <Col></Col>
+                </Row>
+                <br/>
 
             </Container>
         </>
