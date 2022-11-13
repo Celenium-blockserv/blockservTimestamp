@@ -72,7 +72,7 @@ const resources = {
             inputTextConsultation:"Adresse publique sur la blockchain Polygon.",
             listConsultation:"Liste des empreintes numeriques du dépositaire",
             dateTransactionConsultation:"Date ( dd/mm/yy )",
-            hashTransactionConsultation:"Hash enregistré sur la blockchain",
+            hashTransactionConsultation:"Empreinte numérique enregistrée sur la blockchain",
             blockNumberTransactionConsultation:"Block",
             qrcodeConsultation:"QR Code (cliquer ici)",
             qrcodeHideConsultation:"QR Code",
