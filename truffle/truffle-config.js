@@ -45,7 +45,6 @@ module.exports = {
           network_id:80001,
           networkCheckTimeout: 10000,
           timeoutBlocks: 200
-
       }
     //
     // An additional network, but with some advanced options…
