@@ -46,7 +46,7 @@ function Main() {
                     <Tab eventKey={2} title={t("consignationMain")}  >
                         <EthProvider>
 
-                        <Consignation fileHash={fileHash} setOwnerInParent={setOwnerInParent}></Consignation>
+                        <Consignation fileHash={fileHash} setOwnerInParent={setOwnerInParent} setUploadedFileHash={setUploadedFileHash}></Consignation>
                     </EthProvider>
                 </Tab>
                     <Tab eventKey={3} title={t("consultationMain")}>

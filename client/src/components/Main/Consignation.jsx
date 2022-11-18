@@ -13,19 +13,26 @@ import inconeQR from "../../assets/IconeKeyQR.png";
 
 import "./consignation.css"
 import QRCode from "qrcode.react";
-function Consignation({fileHash, setOwnerInParent}) {
+function Consignation({fileHash, setOwnerInParent, setUploadedFileHash}) {
     const { state: { accounts, contract } } = useEth();
 
     const [recipient, setRecipient] = useState("");
     const [hashOwner, setHashOwner] = useState('');
     const [blockNumber, setBlockNumber] = useState(0);
 
+    const [editableHash, setEditableHash] = useState([]);
+
+    useEffect( () => {
+        setEditableHash(!fileHash ? '' :  fileHash.toString());
+    }, [ fileHash]);
+
+
     useEffect(() => {
         const setHashOwnerFromPolygon = async () => {
             try {
                 // eslint-disable-next-line
-                if (fileHash != 0x0) {
-                    let result = await contract.methods.getOwnerAddress(fileHash).call()
+                if (editableHash != 0x0) {
+                    let result = await contract.methods.getOwnerAddress(editableHash).call()
                     setHashOwner(result)
                 }
             } catch (error) {
@@ -37,7 +44,7 @@ function Consignation({fileHash, setOwnerInParent}) {
                 setHashOwnerFromPolygon();
 
         }
-    }, [contract, fileHash]);
+    }, [contract, editableHash]);
 
 
 
@@ -46,8 +53,13 @@ function Consignation({fileHash, setOwnerInParent}) {
         setOwnerInParent(event.target.value);
     }
 
+    function handleHashChange(event)
+    {    setEditableHash( event.target.value);
+        setUploadedFileHash(event.target.value);
+    }
+
     const setTimestamp = async () => {
-        let response = await contract.methods.timestamp(recipient, fileHash,).send( { from: accounts[0] });
+        let response = await contract.methods.timestamp(recipient, editableHash,).send( { from: accounts[0] });
         if ( response.blockNumber) {
             setBlockNumber(response.blockNumber);
         }
@@ -75,8 +87,11 @@ function Consignation({fileHash, setOwnerInParent}) {
             <Container fluid>
                 <br/>
                 <Row>
-                    <Col xs={5}>{t("hashConsignation")}</Col>
-                    <Col>{!fileHash ? '' :  fileHash.toString()}</Col>
+                    <Col xs={5}><Form.Label htmlFor="fileHash">{t("hashConsignation")}</Form.Label></Col>
+                    <Col>
+                        <Form.Control type="text" id="fileHash" onChange={handleHashChange}
+                                      value={editableHash}/>
+                        </Col>
                 </Row>
                 <br/>
                 <Row>
