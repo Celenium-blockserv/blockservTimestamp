@@ -1,7 +1,7 @@
 {
   "name": "truffle",
   "version": "1.0.0",
-  "description": "Truffle project with SimpleStorage contract",
+  "description": "blockservTimestamp project",
   "main": "truffle-config.js",
   "dependencies": {
     "@openzeppelin/contracts": "^4.7.3",
@@ -12,5 +12,4 @@
     "test": "truffle test"
   },
   "author": "",
-  "license": "MIT"
 }
