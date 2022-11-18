@@ -77,7 +77,6 @@ function Consultation({owner, fileHash}) {
 
         const setHashOwnerFromPolygon = async () => {
             try {
-                console.log(fileHash.length)
                 if (editableHash.length === 64) {
                     let result = await contract.methods.getOwnerAddress(editableHash).call()
                     setHashOwner(result)
