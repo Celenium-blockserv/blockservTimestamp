@@ -20,7 +20,8 @@ function Consignation({fileHash, setOwnerInParent, setUploadedFileHash}) {
     const [hashOwner, setHashOwner] = useState('');
     const [blockNumber, setBlockNumber] = useState(0);
 
-    const [editableHash, setEditableHash] = useState([]);
+    const [editableHash, setEditableHash] = useState('');
+    const [googleDriveUrl, setGoogleDriveUrl] = useState('');
 
     useEffect( () => {
         setEditableHash(!fileHash ? '' :  fileHash.toString());
@@ -58,6 +59,11 @@ function Consignation({fileHash, setOwnerInParent, setUploadedFileHash}) {
         setUploadedFileHash(event.target.value);
     }
 
+    function handleGoogleDriveUrlChange(event)
+    {    setGoogleDriveUrl( event.target.value);
+    }
+
+
     const setTimestamp = async () => {
         let response = await contract.methods.timestamp(recipient, editableHash,).send( { from: accounts[0] });
         if ( response.blockNumber) {
@@ -77,6 +83,23 @@ function Consignation({fileHash, setOwnerInParent, setUploadedFileHash}) {
         aEl.click();
         document.body.removeChild(aEl);
     }
+
+
+    const downloadGoogleDriveUrlQRCode = () => {
+        const qrCodeURL = document.getElementById('googleQrCodeId')
+            .toDataURL("image/png")
+            .replace("image/png", "image/octet-stream");
+        let aEl = document.createElement("a");
+        aEl.href = qrCodeURL;
+        aEl.download = "QR_Code_Certificate.png";
+        document.body.appendChild(aEl);
+        aEl.click();
+        document.body.removeChild(aEl);
+    }
+
+
+
+
     const imgSettings = {
         src: inconeQR,
         height:40,
@@ -153,6 +176,40 @@ function Consignation({fileHash, setOwnerInParent, setUploadedFileHash}) {
                     }
 
                 </Row>
+
+                <br/>
+                <Row>
+                    <Col xs={5}><Form.Label htmlFor="googleDriveUrl">{t("googleDriveUrlConsignation")}</Form.Label></Col>
+                    <Col>
+                        <Form.Control type="text" id="googleDriveUrl" onChange={handleGoogleDriveUrlChange}
+                                      value={googleDriveUrl}/>
+                    </Col>
+                </Row>
+                <br/>
+
+                <Row>
+                    {
+                        googleDriveUrl === '' ? <></> : <>
+                            <Col></Col>
+                            <Col className="consignation-style  justify-content-center">
+                                <QRCode
+                                    id="googleQrCodeId"
+                                    value={googleDriveUrl}
+                                    size={128}
+                                    bgColor={"#ffffff"}
+                                    fgColor={"#000000"}
+                                    level={"H"}
+                                    includeMargin={false}
+                                    onClick={downloadGoogleDriveUrlQRCode}
+                                    imageSettings={imgSettings}
+                                />
+                            </Col>
+                            <Col></Col>
+                        </>
+                    }
+
+                </Row>
+
 
             </Container>
         </>

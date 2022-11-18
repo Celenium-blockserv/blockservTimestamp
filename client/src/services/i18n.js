@@ -28,6 +28,8 @@ const resources = {
             inputTextConsignation:"Polygon Blockchain public address",
             recordConsignation:"Record",
             alreadyConsignation: "This numerical signature is already recorded by ",
+            googleDriveUrlConsignation: "Google drive address: ",
+            generateGoogleDriveQRCodeConsignation:"Generate QR Code with Google drive URL",
 
             ownerConsultation:"Owner account address:",
             inputTextConsultation:"Address on the Polygon Mainnet",
@@ -67,6 +69,8 @@ const resources = {
             inputTextConsignation:"Adresse publique sur la blockchain Polygon.",
             recordConsignation:"Enregistrer la consignation",
             alreadyConsignation: "L'empreinte numérique a déjà été déposée par ",
+            googleDriveUrlConsignation: "Adresse Google drive: ",
+            generateGoogleDriveQRCodeConsignation:"Generer le QR Code avec l'url Google drive du certificat",
 
             ownerConsultation:"Compte du dépositaire:",
             inputTextConsultation:"Adresse publique sur la blockchain Polygon.",
