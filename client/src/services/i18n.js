@@ -51,30 +51,30 @@ const resources = {
     },
     fr: {
         translation: {
-            app_name: "BLOCKCHAIN DE CONSIGNATION",
+            app_name: "Tiers Déposant sur la Blockchain",
             encodingMain:"1) Encodage",
             consignationMain:"2) Consignation",
             consultationMain:"3) Consultation",
 
-            pricingButtonFooter:"Tarification",
+            pricingButtonFooter:"C.G.U",
             contactButtonFooter:"Assistance",
 
             dragNDropEncoder: "Déposer le fichier ici",
-            warningEncoder: "Attention: votre fichier n’est pas conservé sur ce site",
+            warningEncoder: "Attention: ce site n’a pas accès à votre fichier, conservez-le sans limite de temps",
             hashEncoder: "Empreinte numérique de votre fichier: ",
             copyEncoder: "Copier dans le presse papier",
 
             hashConsignation:"Empreinte numérique du fichier:",
-            ownerConsignation:"Compte dépositaire de l’encodage cryptographique:",
+            ownerConsignation:"Adresse du tiers déposant :",
             inputTextConsignation:"Adresse publique sur la blockchain Polygon.",
             recordConsignation:"Enregistrer la consignation",
             alreadyConsignation: "L'empreinte numérique a déjà été déposée par ",
             googleDriveUrlConsignation: "Adresse Google drive: ",
             generateGoogleDriveQRCodeConsignation:"Generer le QR Code avec l'url Google drive du certificat",
 
-            ownerConsultation:"Compte du dépositaire:",
+            ownerConsultation:"Adresse du tiers déposant :",
             inputTextConsultation:"Adresse publique sur la blockchain Polygon.",
-            listConsultation:"Liste des empreintes numeriques du dépositaire",
+            listConsultation:"Liste des empreintes numeriques du tiers déposant",
             dateTransactionConsultation:"Date ( dd/mm/yy )",
             hashTransactionConsultation:"Empreinte numérique enregistrée sur la blockchain",
             blockNumberTransactionConsultation:"Block",
@@ -82,7 +82,7 @@ const resources = {
             qrcodeHideConsultation:"QR Code",
             hashConsultation: "Empreinte numérique: ",
             hashInputMsgConsultation: "Empreinte numérique sur 64 digits en minuscules",
-            getOwnerConsultation: "Verifier quel est le dépositaire de l'empreinte numérique",
+            getOwnerConsultation: "Vérifier la consignation de l'empreinte numérique",
             recordedByConsultation: "Cette empreinte numérique a été déposée par: ",
 
             contactUsFooter:"Nous contacter",
